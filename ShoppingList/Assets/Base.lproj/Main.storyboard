@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -52,7 +53,7 @@
                     <connections>
                         <outlet property="activityIndicator" destination="bBt-t9-qlc" id="Fd5-d1-gpH"/>
                         <outlet property="signInButton" destination="kdK-HF-cgC" id="4km-Ux-Ud9"/>
-                        <segue destination="PKa-oc-A9q" kind="show" identifier="listsSegue" id="bno-bM-3vC"/>
+                        <segue destination="PKa-oc-A9q" kind="show" identifier="listsViewSegue" id="bno-bM-3vC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -119,15 +120,23 @@
                                 <segue destination="rY4-sZ-v7E" kind="unwind" unwindAction="signOutWithSegue:" id="Tgr-Qu-gsH"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Y4f-ej-Hnu">
-                            <connections>
-                                <action selector="addNewList:" destination="xZo-Ps-BNH" id="SDa-xz-MI9"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="Y4f-ej-Hnu">
+                                <connections>
+                                    <action selector="addNewList:" destination="xZo-Ps-BNH" id="SDa-xz-MI9"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="123" id="8ep-fs-GQt">
+                                <connections>
+                                    <action selector="listsSort:" destination="xZo-Ps-BNH" id="GaZ-9l-6b7"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="listsSortButton" destination="8ep-fs-GQt" id="3Sw-po-BMm"/>
                         <outlet property="tableView" destination="hsn-CF-JSG" id="8lN-gm-xoc"/>
-                        <segue destination="rwE-gn-ad2" kind="show" identifier="AddEditList" id="2Nl-SR-9bf"/>
+                        <segue destination="rwE-gn-ad2" kind="show" identifier="AddEditListSegue" id="2Nl-SR-9bf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b05-8Z-C3u" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -159,7 +168,7 @@
                                                 <rect key="frame" x="0.0" y="30.5" width="359" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                                             </textField>
                                         </subviews>
                                     </stackView>

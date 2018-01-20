@@ -76,12 +76,12 @@ extension SignInViewController {
                     
                     if let currentUser = currentUser {
                         Model.sharedInstance().currentUser = currentUser
-                        self.performSegue(withIdentifier: "listsSegue", sender: nil)
+                        self.performSegue(withIdentifier: SegueIdentiers.ListsView, sender: nil)
                     } else {
                         self.setNewCurrentUser(activeUser)
                         FirebaseClient.sharedInstance().addNewUser(for: Model.sharedInstance().currentUser)
                         DispatchQueue.main.async {
-                            self.performSegue(withIdentifier: "listsSegue", sender: nil)
+                            self.performSegue(withIdentifier: SegueIdentiers.ListsView, sender: nil)
                         }
                     }
                 })

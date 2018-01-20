@@ -37,6 +37,15 @@ struct SLUser {
     var displayName = ""
     var email = ""
     var lists = [ShoppingList]()
+    
+    mutating func sortListsByListName() {
+        lists = lists.sorted(by: { $0.listName.localizedCompare($1.listName) == .orderedAscending })
+    }
+    
+    mutating func sortListsByDueDate() {
+        lists = lists.sorted(by: { $0.dueDate < $1.dueDate })
+    }
+
 }
 
 // MARK: - Shopping List Model
@@ -50,6 +59,7 @@ struct ShoppingList {
     init() {
         listName = ""
         dueDate = ""
+        listKey = ""
         items = [ShoppingItem]()
     }
     

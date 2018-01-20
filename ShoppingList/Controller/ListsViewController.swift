@@ -16,6 +16,7 @@ class ListsViewController: UIViewController {
     // MARK: IBOutlet
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var listsSortButton: UIBarButtonItem!
     
     // MARK: App Life Cycle
     
@@ -49,6 +50,13 @@ class ListsViewController: UIViewController {
         performSegue(withIdentifier: SegueIdentiers.AddOrEditList, sender: sender)
     }
     
+    @IBAction func listsSort(_ sender: UIBarButtonItem) {
+        let sortListsByListName = UserDefaults.standard.bool(forKey: Constants.SortListsByListName)
+        UserDefaults.standard.set(!sortListsByListName, forKey: Constants.SortListsByListName)
+        UserDefaults.standard.synchronize()
+        loadData()
+    }
+        
     // MARK: Configure the Edit Row and Load Data
     
     private func addLongPressGestureRecognizer () {
@@ -98,6 +106,7 @@ extension ListsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "listCell")
+        sortLists()
         cell?.textLabel?.text = Model.sharedInstance().currentUser.lists[indexPath.row].listName
         cell?.detailTextLabel?.text = "Due Date: \(Model.sharedInstance().currentUser.lists[indexPath.row].dueDate)"
         return cell!
@@ -108,6 +117,15 @@ extension ListsViewController: UITableViewDelegate, UITableViewDataSource {
             let deletedListKey = Model.sharedInstance().currentUser.lists[indexPath.row].listKey
             FirebaseClient.sharedInstance().deleteListWithKey(deletedListKey, userID: Model.sharedInstance().currentUser.userID)
         }
+    }
+    
+    private func sortLists() {
+        let sortListsByListName = UserDefaults.standard.bool(forKey: Constants.SortListsByListName)
+        Model.sharedInstance().currentUser.sortListsByListName()
+        if !sortListsByListName {
+            Model.sharedInstance().currentUser.sortListsByDueDate()
+        }
+        listsSortButton.title = sortListsByListName ? "123" : "ABC"
     }
 }
 

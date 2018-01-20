@@ -50,6 +50,7 @@ extension FirebaseClient {
 // MARK: Constants
 struct Constants {
     static let SecondsForDay: Double = 86400
+    static let SortListsByListName = "sortListsByListName"
 }
 // MARK: Alerts
 struct Alerts {
@@ -68,7 +69,8 @@ struct NotificationNames {
 
 // MARK: Segue Identifiers
 struct SegueIdentiers {
-    static let AddOrEditList = "AddEditList"
+    static let ListsView = "listsViewSegue"
+    static let AddOrEditList = "AddEditListSegue"
 }
 
 
