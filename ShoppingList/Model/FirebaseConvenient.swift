@@ -113,6 +113,50 @@ extension FirebaseClient {
         deleteData(at: substituteKeyInNodePath(substituteKeyInNodePath(NodePath.UserListKey, key: NodePathKeys.UserID, value: userID)!, key: NodePathKeys.ListKey, value: listKey)!)
     }
     
+    // MARK: Items
+
+    func getPredefinedItems() {
+        readDataOnce(at: NodePath.PredefinedItems) { (results, error) in
+            guard error == nil else {
+                return
+            }
+            
+            if let predefinedItems = results as? [String: AnyObject] {
+                Model.sharedInstance().predefinedItems = [ShoppingItem]()
+                for (_, item) in predefinedItems {
+                    if let item = item as? [String: AnyObject] {
+                        let predefinedItem = ShoppingItem(dictionary: item)
+                        Model.sharedInstance().predefinedItems.append(predefinedItem)
+                    }
+                }
+                Model.sharedInstance().predefinedItems = Model.sharedInstance().predefinedItems.sorted(by: { $0.itemName.localizedCompare($1.itemName) == .orderedAscending })
+            }
+        }
+    }
+    
+    func observePredefinedItems() {
+        addObserver(at: NodePath.PredefinedItems) { (results, error) in
+            guard error == nil else {
+                return
+            }
+            
+            if let predefinedItems = results as? [String: AnyObject] {
+                Model.sharedInstance().predefinedItems = [ShoppingItem]()
+                for (_, item) in predefinedItems {
+                    if let item = item as? [String: AnyObject] {
+                        let predefinedItem = ShoppingItem(dictionary: item)
+                        Model.sharedInstance().predefinedItems.append(predefinedItem)
+                    }
+                }
+                Model.sharedInstance().predefinedItems = Model.sharedInstance().predefinedItems.sorted(by: { $0.itemName.localizedCompare($1.itemName) == .orderedAscending })
+            }
+            DispatchQueue.main.async {
+                NotificationCenter.default.post(name: NSNotification.Name(NotificationNames.UserListsUpdated), object: self)
+            }
+
+        }
+    }
+    
     // MARK: Helper Functions
     
     private func substituteKeyInNodePath(_ nodePath: String, key: String, value: String) -> String? {

@@ -83,13 +83,13 @@ class ListsViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == SegueIdentiers.AddOrEditList {
-            if let ListDetailsViewController = segue.destination as? ListDetailsViewController {
+            if let AddEditListViewController = segue.destination as? AddEditListViewController {
                 if let _ = sender as? UILongPressGestureRecognizer {
-                    ListDetailsViewController.currentList = Model.sharedInstance().currentList
-                    ListDetailsViewController.isNewList = false
+                    AddEditListViewController.currentList = Model.sharedInstance().currentList
+                    AddEditListViewController.isNewList = false
                 } else if let _ = sender as? UIBarButtonItem {
-                    ListDetailsViewController.currentList = ShoppingList()
-                    ListDetailsViewController.isNewList = true
+                    AddEditListViewController.currentList = ShoppingList()
+                    AddEditListViewController.isNewList = true
                 }
             }
         }
@@ -145,4 +145,3 @@ extension ListsViewController {
                                                   object: nil)
     }
 }
-

@@ -64,6 +64,7 @@ extension SignInViewController {
     
     func addAuthHandle() {
         authHandle = Auth.auth().addStateDidChangeListener({ (auth, user) in
+            FirebaseClient.sharedInstance().getPredefinedItems()
             if let activeUser = user {
                 DispatchQueue.main.async {
                     self.signInButton.isEnabled = false

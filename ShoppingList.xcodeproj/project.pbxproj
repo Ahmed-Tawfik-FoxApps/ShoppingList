@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		580D62092010E69300B48343 /* ListDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580D62082010E69300B48343 /* ListDetailsViewController.swift */; };
+		580003A8201416E200BA3E75 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580003A7201416E200BA3E75 /* ItemCell.swift */; };
+		580D62092010E69300B48343 /* AddEditListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580D62082010E69300B48343 /* AddEditListViewController.swift */; };
 		580D620B2010E86700B48343 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580D620A2010E86700B48343 /* Extensions.swift */; };
 		5840771D1FF1F89C0022F492 /* ListsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5840771C1FF1F89C0022F492 /* ListsViewController.swift */; };
 		5840771F1FF2BA320022F492 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5840771E1FF2BA320022F492 /* Model.swift */; };
@@ -25,7 +26,8 @@
 
 /* Begin PBXFileReference section */
 		3293347665BEC594FF110797 /* Pods-ShoppingList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShoppingList.release.xcconfig"; path = "Pods/Target Support Files/Pods-ShoppingList/Pods-ShoppingList.release.xcconfig"; sourceTree = "<group>"; };
-		580D62082010E69300B48343 /* ListDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDetailsViewController.swift; sourceTree = "<group>"; };
+		580003A7201416E200BA3E75 /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
+		580D62082010E69300B48343 /* AddEditListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditListViewController.swift; sourceTree = "<group>"; };
 		580D620A2010E86700B48343 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		5840771C1FF1F89C0022F492 /* ListsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsViewController.swift; sourceTree = "<group>"; };
 		5840771E1FF2BA320022F492 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
@@ -104,7 +106,7 @@
 			children = (
 				58F0AE431FEEDABC0025305F /* SignInViewController.swift */,
 				5840771C1FF1F89C0022F492 /* ListsViewController.swift */,
-				580D62082010E69300B48343 /* ListDetailsViewController.swift */,
+				580D62082010E69300B48343 /* AddEditListViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -112,6 +114,7 @@
 		58F0AE551FEEDAF20025305F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				580003A7201416E200BA3E75 /* ItemCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -239,7 +242,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		21786CD167C40D155169A585 /* [CP] Embed Pods Frameworks */ = {
@@ -275,8 +278,8 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-ShoppingList/Pods-ShoppingList-resources.sh",
-				$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebaseAuthUI.bundle,
-				$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebaseGoogleAuthUI.bundle,
+				"$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebaseAuthUI.bundle",
+				"$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebaseGoogleAuthUI.bundle",
 				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -299,7 +302,8 @@
 				580D620B2010E86700B48343 /* Extensions.swift in Sources */,
 				58F0AE421FEEDABC0025305F /* AppDelegate.swift in Sources */,
 				584077211FF2FABA0022F492 /* FirebaseClient.swift in Sources */,
-				580D62092010E69300B48343 /* ListDetailsViewController.swift in Sources */,
+				580003A8201416E200BA3E75 /* ItemCell.swift in Sources */,
+				580D62092010E69300B48343 /* AddEditListViewController.swift in Sources */,
 				584077252006F94A0022F492 /* FirebaseConvenient.swift in Sources */,
 				5840771D1FF1F89C0022F492 /* ListsViewController.swift in Sources */,
 				5840771F1FF2BA320022F492 /* Model.swift in Sources */,

@@ -147,7 +147,7 @@
         <!--Add List-->
         <scene sceneID="OJj-aT-FTy">
             <objects>
-                <viewController id="rwE-gn-ad2" customClass="ListDetailsViewController" customModule="ShoppingList" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="rwE-gn-ad2" customClass="AddEditListViewController" customModule="ShoppingList" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Urn-t8-if9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -202,21 +202,41 @@
                                 <rect key="frame" x="8" y="397" width="359" height="262"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="7iw-LY-HDL">
-                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="itemSize" width="100" height="100"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="itemCell" id="7Yv-Fy-d9C">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="itemCell" id="7Yv-Fy-d9C" customClass="ItemCell" customModule="ShoppingList" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeHolder" translatesAutoresizingMaskIntoConstraints="NO" id="WP0-ev-y6X">
+                                                    <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="100" id="0kE-bt-Y9E"/>
+                                                        <constraint firstAttribute="height" constant="100" id="Wso-7h-CE4"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
                                         </view>
+                                        <constraints>
+                                            <constraint firstItem="WP0-ev-y6X" firstAttribute="centerX" secondItem="7Yv-Fy-d9C" secondAttribute="centerX" id="5cm-eq-1wM"/>
+                                            <constraint firstItem="WP0-ev-y6X" firstAttribute="centerY" secondItem="7Yv-Fy-d9C" secondAttribute="centerY" id="nPg-u6-jRR"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="itemImageView" destination="WP0-ev-y6X" id="DfU-pn-ayD"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="rwE-gn-ad2" id="QvJ-kJ-5qe"/>
+                                    <outlet property="delegate" destination="rwE-gn-ad2" id="AEm-oY-kOH"/>
+                                </connections>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -239,6 +259,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="collectionView" destination="kNn-O3-U58" id="6nv-WD-x0T"/>
+                        <outlet property="collectionViewFlowLayout" destination="7iw-LY-HDL" id="0bM-g3-uxY"/>
                         <outlet property="dueDatePicker" destination="nuR-wU-L7G" id="VJM-af-A33"/>
                         <outlet property="listDetailsNavItem" destination="CzK-1M-teB" id="aTJ-Wc-MT2"/>
                         <outlet property="listName" destination="xbL-JO-ZpR" id="2C1-Gq-Rc1"/>
@@ -269,5 +291,6 @@
     </scenes>
     <resources>
         <image name="logo" width="150" height="150"/>
+        <image name="placeHolder" width="100" height="100"/>
     </resources>
 </document>

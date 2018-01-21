@@ -15,6 +15,7 @@ class Model: NSObject {
     var currentUser = SLUser()
     var currentList = ShoppingList()
     var currentItem = ShoppingItem()
+    var predefinedItems = [ShoppingItem]()
     
     // MARK: - Shared Instance
     
@@ -28,7 +29,7 @@ class Model: NSObject {
 
 // MARK: - Shopping Item Category
 
-enum itemCategory: Int {case Grocery = 0, Other}
+//enum itemCategory: Int {case Grocery = 0, Other}
 
 // MARK: - Shopping List User Model
 
@@ -68,11 +69,28 @@ struct ShoppingList {
         dueDate = dictionary[FirebaseClient.NodeKeys.DueDate]! as! String
         listKey = dictionary[FirebaseClient.NodeKeys.ListKey]! as! String
     }
+    
+    mutating func sortItemsByName() {
+        items = items.sorted(by: { $0.itemName.localizedCompare($1.itemName) == .orderedAscending })
+    }
 }
 
 // MARK: - Shopping Item Model
 
 struct ShoppingItem {
     var itemName = ""
-    var itemCategory : itemCategory = .Other
+    var itemCategory = ""
+    var itemThumbnailURL = ""
+    
+    init() {
+        itemName = ""
+        itemCategory = ""
+        itemThumbnailURL = ""
+    }
+    
+    init(dictionary: [String: AnyObject]) {
+        itemName = dictionary[FirebaseClient.NodeKeys.ItemName]! as! String
+        itemCategory = dictionary[FirebaseClient.NodeKeys.ItemCategory]! as! String
+        itemThumbnailURL = dictionary[FirebaseClient.NodeKeys.ItemThumbnailURL]! as! String
+    }
 }

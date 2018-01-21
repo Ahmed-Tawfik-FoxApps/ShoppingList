@@ -21,6 +21,12 @@ extension FirebaseClient {
         static let DueDate = "dueDate"
         static let ListKey = "listKey"
         static let Items = "items"
+        
+        // Item
+        static let ItemName = "itemName"
+        static let ItemCategory = "itemCategory"
+        static let ItemThumbnailURL = "itemThumbnailURL"
+
     }
     
     struct NodePath {
@@ -37,6 +43,10 @@ extension FirebaseClient {
         static let UserListDetailsKeyValue = "/lists/<listKey>/listKey"
         static let UserListDetailsListName = "/lists/<listKey>/listName"
         static let UserListDetailsDueDate = "/lists/<listKey>/dueDate"
+        
+        // Items
+        static let PredefinedItems = "/items-predefined"
+
     }
     
     struct NodePathKeys {
@@ -64,7 +74,7 @@ struct Alerts {
 // MARK: Notification Names
 struct NotificationNames {
     static let UserListsUpdated = "UserListsUpdated"
-    static let ItemsUpdated = "ItemsUpdated"
+    static let PredefinedItemsUpdated = "PredefinedItemsUpdated"
 }
 
 // MARK: Segue Identifiers

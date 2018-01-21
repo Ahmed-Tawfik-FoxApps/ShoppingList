@@ -11,5 +11,6 @@ pod 'Firebase/Database'
 pod 'Firebase/Auth'
 pod 'FirebaseUI/Auth'
 pod 'FirebaseUI/Google'
+pod 'SDWebImage', '~> 4.0'
 
 end
