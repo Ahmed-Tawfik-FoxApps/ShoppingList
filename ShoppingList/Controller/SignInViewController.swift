@@ -107,7 +107,8 @@ extension SignInViewController {
         // To be Added -- demo item need to be added to the demo list
         let demoList = [FirebaseClient.NodeKeys.ListName: "Demo List" as AnyObject,
                         FirebaseClient.NodeKeys.DueDate: getStringFromDate(Date().addingTimeInterval(Constants.SecondsForDay)) as AnyObject,
-                        FirebaseClient.NodeKeys.ListKey: "" as AnyObject]
+                        FirebaseClient.NodeKeys.ListKey: "" as AnyObject,
+                        FirebaseClient.NodeKeys.Items: [[String: AnyObject]]() as AnyObject]
         Model.sharedInstance().currentUser.lists = [ShoppingList(dictionary: demoList)]
     }
 }

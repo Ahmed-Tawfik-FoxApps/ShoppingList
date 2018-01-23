@@ -14,8 +14,8 @@ class Model: NSObject {
     
     var currentUser = SLUser()
     var currentList = ShoppingList()
-    var currentItem = ShoppingItem()
     var predefinedItems = [ShoppingItem]()
+    var currentListItems = [ShoppingItem]()
     
     // MARK: - Shared Instance
     
@@ -68,6 +68,15 @@ struct ShoppingList {
         listName = dictionary[FirebaseClient.NodeKeys.ListName]! as! String
         dueDate = dictionary[FirebaseClient.NodeKeys.DueDate]! as! String
         listKey = dictionary[FirebaseClient.NodeKeys.ListKey]! as! String
+        if let itemsDictionary = dictionary[FirebaseClient.NodeKeys.Items] as? [[String: AnyObject]] {
+            if itemsDictionary.count != 0 {
+                for item in itemsDictionary {
+                        items.append(ShoppingItem(dictionary: item))
+                }
+            } else {
+                items = [ShoppingItem]()
+            }
+        }
     }
     
     mutating func sortItemsByName() {

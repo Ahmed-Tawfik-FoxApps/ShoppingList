@@ -9,108 +9,44 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ShoppingList/Controller/ViewController.swift"
-            timestampString = "535952591.216139"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ShoppingList/Controller/ListDetailsViewController.swift"
-            timestampString = "538181152.207507"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
-            landmarkName = "ListDetailsViewController"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ShoppingList/Controller/ListDetailsViewController.swift"
-            timestampString = "538181152.207544"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
-            landmarkName = "doneEditingList(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ShoppingList/Controller/ListDetailsViewController.swift"
-            timestampString = "538181152.207744"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
-            landmarkName = "doneEditingList(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "ShoppingList/Model/FirebaseConvenient.swift"
-            timestampString = "538203712.334759"
+            timestampString = "538414294.696614"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "119"
-            endingLineNumber = "119"
-            landmarkName = "getPredefinedItems()"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
+            landmarkName = "observeUserLists(for:)"
             landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "ShoppingList.FirebaseClient.getPredefinedItems() -&gt; ()"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.AnyObject&gt;, Swift.Optional&lt;Swift.String&gt;) -&gt; () in closure #1 (Swift.Optional&lt;Swift.AnyObject&gt;, Swift.Optional&lt;Swift.String&gt;) -&gt; () in ShoppingList.FirebaseClient.observeUserLists(for: Swift.String) -&gt; ()"
                   moduleName = "ShoppingList"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///T3%20Apps/iOS%20Apps/Swift/Trainging/iOS%20Developer%20Nanodegree/Core%20Curriculum/08.%20Graduation%20Project/ShoppingList/ShoppingList/Model/FirebaseConvenient.swift"
-                  timestampString = "538195953.812696"
+                  timestampString = "538410121.300565"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "119"
-                  endingLineNumber = "119"
-                  offsetFromSymbolStart = "14">
+                  startingLineNumber = "101"
+                  endingLineNumber = "101"
+                  offsetFromSymbolStart = "1135">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Swift.AnyObject&gt;, Swift.Optional&lt;Swift.String&gt;) -&gt; () in ShoppingList.FirebaseClient.getPredefinedItems() -&gt; ()"
+                  symbolName = "closure #1 (ShoppingList.ShoppingList) -&gt; Swift.Bool in closure #1 (Swift.Optional&lt;Swift.AnyObject&gt;, Swift.Optional&lt;Swift.String&gt;) -&gt; () in closure #1 (Swift.Optional&lt;Swift.AnyObject&gt;, Swift.Optional&lt;Swift.String&gt;) -&gt; () in ShoppingList.FirebaseClient.observeUserLists(for: Swift.String) -&gt; ()"
                   moduleName = "ShoppingList"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///T3%20Apps/iOS%20Apps/Swift/Trainging/iOS%20Developer%20Nanodegree/Core%20Curriculum/08.%20Graduation%20Project/ShoppingList/ShoppingList/Model/FirebaseConvenient.swift"
-                  timestampString = "538195953.814841"
+                  timestampString = "538410121.302617"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "120"
-                  endingLineNumber = "120"
-                  offsetFromSymbolStart = "50">
+                  startingLineNumber = "101"
+                  endingLineNumber = "101"
+                  offsetFromSymbolStart = "112">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -122,12 +58,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShoppingList/Model/FirebaseConvenient.swift"
-            timestampString = "538203712.334816"
+            timestampString = "538414294.6967"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "120"
-            endingLineNumber = "120"
-            landmarkName = "getPredefinedItems()"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
+            landmarkName = "observeUserLists(for:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -138,12 +74,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShoppingList/Model/FirebaseConvenient.swift"
-            timestampString = "538203712.3348579"
+            timestampString = "538414294.696767"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "124"
-            endingLineNumber = "124"
-            landmarkName = "getPredefinedItems()"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
+            landmarkName = "observeUserLists(for:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -154,12 +90,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShoppingList/Model/FirebaseConvenient.swift"
-            timestampString = "538203712.334897"
+            timestampString = "538414294.696816"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "126"
-            endingLineNumber = "126"
-            landmarkName = "getPredefinedItems()"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
+            landmarkName = "observeUserLists(for:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -170,12 +106,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShoppingList/Model/FirebaseConvenient.swift"
-            timestampString = "538203712.3349349"
+            timestampString = "538414294.696894"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "129"
-            endingLineNumber = "129"
-            landmarkName = "getPredefinedItems()"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
+            landmarkName = "observeUserLists(for:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -185,13 +121,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ShoppingList/Controller/AddEditListViewController.swift"
-            timestampString = "538203712.334976"
+            filePath = "ShoppingList/Model/FirebaseConvenient.swift"
+            timestampString = "538414294.696965"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "88"
-            endingLineNumber = "88"
-            landmarkName = "collectionView(_:numberOfItemsInSection:)"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
+            landmarkName = "observeUserLists(for:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -201,13 +137,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ShoppingList/Controller/AddEditListViewController.swift"
-            timestampString = "538203712.3352751"
+            filePath = "ShoppingList/Model/FirebaseConvenient.swift"
+            timestampString = "538414294.697028"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
-            landmarkName = "collectionView(_:numberOfItemsInSection:)"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
+            landmarkName = "observeUserLists(for:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

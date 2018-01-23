@@ -14,6 +14,7 @@ class AddEditListViewController: UIViewController {
     // MARK: Properties
     
     var currentList: ShoppingList!
+    var currentListItems: [ShoppingItem]!
     var isNewList = true
     
     // MARK: IBOutlet
@@ -30,6 +31,14 @@ class AddEditListViewController: UIViewController {
         super.viewDidLoad()
         FirebaseClient.sharedInstance().observePredefinedItems()
         configureListForEdit()
+        // Configure Collection View Flow Layout
+        configureFlowLayoutForWidth(view.frame.size.width - 2)
+
+        collectionView.allowsMultipleSelection = true
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        configureFlowLayoutForWidth(size.width - 2)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -52,6 +61,7 @@ class AddEditListViewController: UIViewController {
         let dueDate = getStringFromDate(dueDatePicker.date)
         currentList.listName = listName
         currentList.dueDate = dueDate
+        currentList.items = currentListItems.sorted(by: {$0.itemName < $1.itemName})
         if isNewList {
             FirebaseClient.sharedInstance().addNewListToUser(currentList, Model.sharedInstance().currentUser.userID)
         } else {
@@ -79,13 +89,25 @@ class AddEditListViewController: UIViewController {
             dueDatePicker.date = getDateFromString(currentList.dueDate)
         }
     }
+    
+    private func configureFlowLayoutForWidth (_ width: CGFloat) {
+        if collectionViewFlowLayout != nil {
+            let space : CGFloat = 4.0
+            let itemsPerLine = 3
+            let dimensionFactor = width
+            let dimension = (dimensionFactor - (CGFloat(itemsPerLine - 1) * space)) / CGFloat(itemsPerLine)
+            
+            collectionViewFlowLayout.minimumInteritemSpacing = space
+            collectionViewFlowLayout.minimumLineSpacing = space
+            collectionViewFlowLayout.itemSize = CGSize(width: dimension, height: dimension)
+        }
+    }
 }
 
 // MARK: Extension AddEditListViewController - CollectionView Delegate and DataSource
 
 extension AddEditListViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(Model.sharedInstance().predefinedItems)
         return Model.sharedInstance().predefinedItems.count != 0 ? Model.sharedInstance().predefinedItems.count : 1
     }
     
@@ -96,15 +118,31 @@ extension AddEditListViewController: UICollectionViewDelegate, UICollectionViewD
         
         cell.itemImageView.sd_setImage(with: itemImageURL, placeholderImage: #imageLiteral(resourceName: "placeHolder"))
         
+        if currentListItems.contains(where: {$0.itemName == Model.sharedInstance().predefinedItems[indexPath.row].itemName}) {
+            cell.isSelected = true
+            collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .bottom)
+        }
+        cell.contentView.backgroundColor = cell.isSelected ? .lightGray : .clear
+
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let selectedItem = Model.sharedInstance().predefinedItems[indexPath.row]
         let selectedCell = collectionView.cellForItem(at: indexPath) as! ItemCell
-//        let templateImage = selectedCell.itemImageView.image?.withRenderingMode(.alwaysTemplate)
-//        selectedCell.itemImageView.image = templateImage
-//        selectedCell.itemImageView.tintColor = UIColor.orange
+        selectedCell.contentView.backgroundColor = .lightGray
+
+        let selectedItem = Model.sharedInstance().predefinedItems[indexPath.row]
+            currentListItems.append(selectedItem)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        let selectedCell = collectionView.cellForItem(at: indexPath) as! ItemCell
+        selectedCell.contentView.backgroundColor = .clear
+
+        let selectedItem = Model.sharedInstance().predefinedItems[indexPath.row]
+        if let index = currentListItems.index(where: {$0.itemName == selectedItem.itemName}) {
+            currentListItems.remove(at: index)
+        }
     }
 }
 

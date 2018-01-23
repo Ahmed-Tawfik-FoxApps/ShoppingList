@@ -43,9 +43,11 @@ extension FirebaseClient {
         static let UserListDetailsKeyValue = "/lists/<listKey>/listKey"
         static let UserListDetailsListName = "/lists/<listKey>/listName"
         static let UserListDetailsDueDate = "/lists/<listKey>/dueDate"
-        
+        static let UserListDetailsItems = "/lists/<listKey>/items"
+
         // Items
         static let PredefinedItems = "/items-predefined"
+        static let ListItems = "/lists/<listKey>/items"
 
     }
     

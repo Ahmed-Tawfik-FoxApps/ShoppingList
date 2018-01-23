@@ -41,10 +41,8 @@ extension FirebaseClient {
                             }
                         })
                     }
-                    completionHandler(currentUser)
-                } else {
-                    completionHandler(nil)
                 }
+                completionHandler(currentUser)
             } else {
                 completionHandler(nil)
             }
@@ -67,19 +65,21 @@ extension FirebaseClient {
     // MARK: List
     
     func addNewListToUser(_ list: ShoppingList, _ userID: String) {
-        let listDictionary = getDictionaryFromList(list)
-        let key = addChildByAutoID(at: NodePath.ListsNode, value: listDictionary as AnyObject)
+        let listMetaDataDictionary = getDictionaryFromList(list)
+        let key = addChildByAutoID(at: NodePath.ListsNode, value: listMetaDataDictionary as AnyObject)
         writeData(at: substituteKeyInNodePath(substituteKeyInNodePath(NodePath.UserListKey, key: NodePathKeys.UserID, value: userID)!, key: NodePathKeys.ListKey, value: key)!, value: key as AnyObject)
         if list.listKey == "" {
             writeData(at: substituteKeyInNodePath(NodePath.UserListDetailsKeyValue, key: NodePathKeys.ListKey, value: key)!, value: key as AnyObject)
-            // To be Added -- Update list items
         }
+        let listItemsDictionary = getDictionaryFromItems(list.items)
+        writeData(at: substituteKeyInNodePath(NodePath.ListItems, key: NodePathKeys.ListKey, value: key)!, value: listItemsDictionary as AnyObject)
     }
     
     func updateListToUser(_ list: ShoppingList, _ userID: String) {
         writeData(at: substituteKeyInNodePath(NodePath.UserListDetailsListName, key: NodePathKeys.ListKey, value: list.listKey)!, value: list.listName as AnyObject)
         writeData(at: substituteKeyInNodePath(NodePath.UserListDetailsDueDate, key: NodePathKeys.ListKey, value: list.listKey)!, value: list.dueDate as AnyObject)
-        // To be Added -- Update list items
+        let listItemsDictionary = getDictionaryFromItems(list.items)
+        writeData(at: substituteKeyInNodePath(NodePath.UserListDetailsItems, key: NodePathKeys.ListKey, value: list.listKey)!, value: listItemsDictionary as AnyObject)
     }
     
     func observeUserLists(for userID: String) {
@@ -90,25 +90,42 @@ extension FirebaseClient {
             if let listKeys = results as? [String: String] {
                 Model.sharedInstance().currentUser.lists = [ShoppingList]()
                 for (listKey, _) in listKeys {
-                    self.readDataOnce(at: self.substituteKeyInNodePath(NodePath.UserListDetailsKey, key: NodePathKeys.ListKey, value: listKey)!, completionHandler: { (results, error) in
+                    self.addObserver(at: self.substituteKeyInNodePath(NodePath.UserListDetailsKey, key: NodePathKeys.ListKey, value: listKey)!, completionHandler: { (results, error) in
                         guard error == nil else {
                             return
                         }
                         if var userList = results as? [String: AnyObject] {
-                            userList[NodeKeys.ListKey] = listKey as AnyObject
-                            let shoppingList = ShoppingList(dictionary: userList)
-                            Model.sharedInstance().currentUser.lists.append(shoppingList)
+                            let userListKey = userList[NodeKeys.ListKey] as! String
+                            if let index = Model.sharedInstance().currentUser.lists.index(where: { $0.listKey == userListKey }) {
+                                Model.sharedInstance().currentUser.lists.remove(at: index)
+                                
+                                userList[NodeKeys.ListKey] = userListKey as AnyObject
+                                let shoppingList = ShoppingList(dictionary: userList)
+                                Model.sharedInstance().currentUser.lists.append(shoppingList)
+
+                            } else {
+                                userList[NodeKeys.ListKey] = listKey as AnyObject
+                                let shoppingList = ShoppingList(dictionary: userList)
+                                Model.sharedInstance().currentUser.lists.append(shoppingList)
+                            }
                         }
                         DispatchQueue.main.async {
                             NotificationCenter.default.post(name: NSNotification.Name(NotificationNames.UserListsUpdated + userID), object: self)
                         }
                     })
                 }
+            } else {
+                Model.sharedInstance().currentUser.lists = [ShoppingList]()
+                DispatchQueue.main.async {
+                    NotificationCenter.default.post(name: NSNotification.Name(NotificationNames.UserListsUpdated + userID), object: self)
+                }
             }
         }
     }
     
     func deleteListWithKey(_ listKey: String, userID: String) {
+//        removeObserver(at: substituteKeyInNodePath(NodePath.UserLists, key: NodePathKeys.UserID, value: userID)!)
+        removeObserver(at: substituteKeyInNodePath(NodePath.UserListDetailsKey, key: NodePathKeys.ListKey, value: listKey)!)
         deleteData(at: substituteKeyInNodePath(NodePath.UserListDetailsKey, key: NodePathKeys.ListKey, value: listKey)!)
         deleteData(at: substituteKeyInNodePath(substituteKeyInNodePath(NodePath.UserListKey, key: NodePathKeys.UserID, value: userID)!, key: NodePathKeys.ListKey, value: listKey)!)
     }
@@ -170,10 +187,22 @@ extension FirebaseClient {
     private func getDictionaryFromList(_ list: ShoppingList) -> [String: AnyObject] {
         return [NodeKeys.ListName: list.listName as AnyObject,
                 NodeKeys.DueDate: list.dueDate as AnyObject,
-                NodeKeys.ListKey: list.listKey as AnyObject,
-                NodeKeys.Items: list.items as AnyObject]
+                NodeKeys.ListKey: list.listKey as AnyObject]
     }
-    
+
+    private func getDictionaryFromItems(_ Items: [ShoppingItem]) -> [[String: AnyObject]] {
+        var itemsDictionary = [[String: AnyObject]]()
+        if Items.count != 0 {
+            for i in 0 ... Items.count - 1 {
+                let itemDictionary = [NodeKeys.ItemName: Items[i].itemName as AnyObject,
+                                      NodeKeys.ItemCategory: Items[i].itemCategory as AnyObject,
+                                      NodeKeys.ItemThumbnailURL: Items[i].itemThumbnailURL as AnyObject]
+                itemsDictionary.append(itemDictionary)
+            }
+        }
+        return itemsDictionary
+    }
+
     private func getStringFromDate(_ date: Date) -> String {
         let dateFormater = DateFormatter()
         dateFormater.dateFormat = "MM-dd-yyyy"

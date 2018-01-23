@@ -153,7 +153,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="aBt-fw-p5P">
-                                <rect key="frame" x="8" y="72" width="359" height="317"/>
+                                <rect key="frame" x="8" y="72" width="359" height="201"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="6Pz-Zn-xwQ">
                                         <rect key="frame" x="0.0" y="0.0" width="359" height="60.5"/>
@@ -173,7 +173,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Mr6-Ze-9sn">
-                                        <rect key="frame" x="0.0" y="70.5" width="359" height="246.5"/>
+                                        <rect key="frame" x="0.0" y="70.5" width="359" height="130.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Due Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ew4-3w-5z8">
                                                 <rect key="frame" x="0.0" y="0.0" width="359" height="20.5"/>
@@ -182,7 +182,10 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="nuR-wU-L7G">
-                                                <rect key="frame" x="0.0" y="30.5" width="359" height="216"/>
+                                                <rect key="frame" x="0.0" y="30.5" width="359" height="100"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="100" id="V9n-7z-Dap"/>
+                                                </constraints>
                                                 <date key="date" timeIntervalSinceReferenceDate="537578278.22765899">
                                                     <!--2018-01-13 23:17:58 +0000-->
                                                 </date>
@@ -199,7 +202,7 @@
                                 </constraints>
                             </stackView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kNn-O3-U58">
-                                <rect key="frame" x="8" y="397" width="359" height="262"/>
+                                <rect key="frame" x="0.0" y="281" width="375" height="378"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="7iw-LY-HDL">
                                     <size key="itemSize" width="100" height="100"/>
@@ -217,15 +220,13 @@
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeHolder" translatesAutoresizingMaskIntoConstraints="NO" id="WP0-ev-y6X">
                                                     <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="100" id="0kE-bt-Y9E"/>
-                                                        <constraint firstAttribute="height" constant="100" id="Wso-7h-CE4"/>
-                                                    </constraints>
                                                 </imageView>
                                             </subviews>
                                         </view>
                                         <constraints>
                                             <constraint firstItem="WP0-ev-y6X" firstAttribute="centerX" secondItem="7Yv-Fy-d9C" secondAttribute="centerX" id="5cm-eq-1wM"/>
+                                            <constraint firstItem="WP0-ev-y6X" firstAttribute="height" secondItem="7Yv-Fy-d9C" secondAttribute="height" id="Ycc-aO-kb6"/>
+                                            <constraint firstItem="WP0-ev-y6X" firstAttribute="width" secondItem="7Yv-Fy-d9C" secondAttribute="width" id="dQR-If-Fnq"/>
                                             <constraint firstItem="WP0-ev-y6X" firstAttribute="centerY" secondItem="7Yv-Fy-d9C" secondAttribute="centerY" id="nPg-u6-jRR"/>
                                         </constraints>
                                         <connections>
@@ -234,8 +235,8 @@
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
-                                    <outlet property="dataSource" destination="rwE-gn-ad2" id="QvJ-kJ-5qe"/>
-                                    <outlet property="delegate" destination="rwE-gn-ad2" id="AEm-oY-kOH"/>
+                                    <outlet property="dataSource" destination="rwE-gn-ad2" id="H20-4z-Joz"/>
+                                    <outlet property="delegate" destination="rwE-gn-ad2" id="lE5-DI-tkb"/>
                                 </connections>
                             </collectionView>
                         </subviews>
@@ -246,8 +247,8 @@
                             <constraint firstItem="uB8-6C-MQy" firstAttribute="trailing" secondItem="aBt-fw-p5P" secondAttribute="trailing" constant="8" id="Qb2-7h-KiI"/>
                             <constraint firstItem="kNn-O3-U58" firstAttribute="top" secondItem="aBt-fw-p5P" secondAttribute="bottom" constant="8" id="YWT-56-e2H"/>
                             <constraint firstItem="uB8-6C-MQy" firstAttribute="bottom" secondItem="kNn-O3-U58" secondAttribute="bottom" constant="8" id="Yjb-bR-3fQ"/>
-                            <constraint firstItem="uB8-6C-MQy" firstAttribute="trailing" secondItem="kNn-O3-U58" secondAttribute="trailing" constant="8" id="aDF-wA-BSv"/>
-                            <constraint firstItem="kNn-O3-U58" firstAttribute="leading" secondItem="uB8-6C-MQy" secondAttribute="leading" constant="8" id="qrU-K4-XlU"/>
+                            <constraint firstItem="uB8-6C-MQy" firstAttribute="trailing" secondItem="kNn-O3-U58" secondAttribute="trailing" id="aDF-wA-BSv"/>
+                            <constraint firstItem="kNn-O3-U58" firstAttribute="leading" secondItem="uB8-6C-MQy" secondAttribute="leading" id="qrU-K4-XlU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="uB8-6C-MQy"/>
                     </view>

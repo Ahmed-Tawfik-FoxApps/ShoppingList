@@ -63,12 +63,20 @@ class FirebaseClient {
     }
     
     func addObserver(at nodePath: String, completionHandler:@escaping (_ results: AnyObject?, _ error: String?) -> Void) {
+        removeObserver(at: nodePath)
         let handle = dbRef.child(nodePath).observe(.value, with: { (snapshot) in
             completionHandler(snapshot.value as AnyObject?, nil)
         }) { (error) in
             completionHandler(nil,error.localizedDescription)
         }
         dbRefHandles[nodePath] = handle
+    }
+    
+    func removeObserver(at nodePath: String) {
+        if let handle = dbRefHandles[nodePath] {
+            dbRef.child(nodePath).removeObserver(withHandle: handle)
+            dbRefHandles.removeValue(forKey: nodePath)
+        }
     }
     
     func deleteData(at nodePath: String) {

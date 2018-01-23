@@ -29,6 +29,7 @@ class ListsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         subscribeToNotifications()
+        loadData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -61,7 +62,7 @@ class ListsViewController: UIViewController {
     
     private func addLongPressGestureRecognizer () {
         let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(editList))
-        longPressGestureRecognizer.minimumPressDuration = 1.0
+        longPressGestureRecognizer.minimumPressDuration = 0.5
         tableView.addGestureRecognizer(longPressGestureRecognizer)
     }
     
@@ -86,9 +87,11 @@ class ListsViewController: UIViewController {
             if let AddEditListViewController = segue.destination as? AddEditListViewController {
                 if let _ = sender as? UILongPressGestureRecognizer {
                     AddEditListViewController.currentList = Model.sharedInstance().currentList
+                    AddEditListViewController.currentListItems = Model.sharedInstance().currentList.items
                     AddEditListViewController.isNewList = false
                 } else if let _ = sender as? UIBarButtonItem {
                     AddEditListViewController.currentList = ShoppingList()
+                    AddEditListViewController.currentListItems = [ShoppingItem]()
                     AddEditListViewController.isNewList = true
                 }
             }
