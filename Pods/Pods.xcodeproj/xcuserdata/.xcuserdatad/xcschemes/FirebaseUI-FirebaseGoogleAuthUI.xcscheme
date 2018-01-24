@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'BE6FEFCADF4652021848F29C22B5A1CD'
-               BlueprintName = 'Pods-ShoppingList'
+               BlueprintIdentifier = 'F5D1FB8D756538080738B81B0BB19852'
+               BlueprintName = 'FirebaseUI-FirebaseGoogleAuthUI'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'Pods-ShoppingList.framework'>
+               BuildableName = 'FirebaseGoogleAuthUI.bundle'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
