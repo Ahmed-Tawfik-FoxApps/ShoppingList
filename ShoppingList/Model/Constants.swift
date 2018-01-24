@@ -79,6 +79,7 @@ struct Alerts {
 struct NotificationNames {
     static let UserListsUpdated = "UserListsUpdated"
     static let PredefinedItemsUpdated = "PredefinedItemsUpdated"
+    static let UserListItemsUpdated = "UserListItemsUpdated"
 }
 
 // MARK: Segue Identifiers

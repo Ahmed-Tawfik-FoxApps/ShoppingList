@@ -174,6 +174,26 @@ extension FirebaseClient {
         }
     }
     
+    func observeListItemsUpdate(for listKey: String) {
+        addObserver(at: substituteKeyInNodePath(NodePath.ListItems, key: NodePathKeys.ListKey, value: listKey)!) { (results, error) in
+            guard error == nil else {
+                return
+            }
+
+            if let items = results as? [[String: AnyObject]] {
+                Model.sharedInstance().currentList.items = [ShoppingItem]()
+                for itemDictionary in items {
+                    let item = ShoppingItem(dictionary: itemDictionary)
+                    Model.sharedInstance().currentList.items.append(item)
+                }
+                Model.sharedInstance().currentList.items = Model.sharedInstance().currentList.items.sorted(by: { $0.itemName.localizedCompare($1.itemName) == .orderedAscending })
+            }
+            DispatchQueue.main.async {
+                NotificationCenter.default.post(name: NSNotification.Name(NotificationNames.UserListItemsUpdated), object: self)
+            }
+        }
+    }
+    
     func updateItems(for listKey: String, items: [ShoppingItem]) {
         let itemsDictionary = getDictionaryFromItems(items)
         writeData(at: substituteKeyInNodePath(NodePath.ListItems, key: NodePathKeys.ListKey, value: listKey)!, value: itemsDictionary as AnyObject)

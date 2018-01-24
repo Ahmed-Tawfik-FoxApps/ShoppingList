@@ -27,6 +27,7 @@ class ListDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        FirebaseClient.sharedInstance().observeListItemsUpdate(for: Model.sharedInstance().currentList.listKey)
         // Configure Collection View Flow Layout
         configureFlowLayoutForWidth(view.frame.size.width - collectionViewFlowlayoutParameters.CollectionViewMargin)
     }
@@ -34,6 +35,12 @@ class ListDetailsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureListCompletionPercentage()
+        subscribeToNotifications()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        unSubscribeToNotifications()
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -74,7 +81,8 @@ class ListDetailsViewController: UIViewController {
         }
     }
 
-    private func reloadData() {
+    @objc private func reloadData() {
+        currentListItemsInSections = Model.sharedInstance().currentList.getItemsPurchaseStatusInSections()
         collectionView.reloadData()
     }
 }
@@ -120,3 +128,21 @@ extension ListDetailsViewController: UICollectionViewDelegate, UICollectionViewD
         }
     }
 }
+
+// MARK: Extension ListsViewController - Notifications
+
+extension ListDetailsViewController {
+    func subscribeToNotifications() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(reloadData),
+                                               name: NSNotification.Name(NotificationNames.UserListItemsUpdated),
+                                               object: FirebaseClient.sharedInstance())
+    }
+    
+    func unSubscribeToNotifications() {
+        NotificationCenter.default.removeObserver(self,
+                                                  name: NSNotification.Name(NotificationNames.UserListItemsUpdated),
+                                                  object: nil)
+    }
+}
+
