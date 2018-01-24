@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ReachabilitySwift
 
 extension UIViewController {
     
@@ -42,5 +43,37 @@ extension UIViewController {
             }
         }
         return itemsDictionary
+    }
+    
+    // MARK: Reachability Observing
+    
+    func startObservingReachability(_ reachability: Reachability) {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.reachabilityChanged),name: ReachabilityChangedNotification,object: reachability)
+        do{
+            try reachability.startNotifier()
+        }catch{
+            print("could not start reachability notifier")
+        }
+    }
+    
+    func stopObservingReachability(_ reachability: Reachability) {
+        reachability.stopNotifier()
+        NotificationCenter.default.removeObserver(self,
+                                                  name: ReachabilityChangedNotification,
+                                                  object: reachability)
+    }
+    
+    @objc func reachabilityChanged(note: Notification) {
+        let reachability = note.object as! Reachability
+        
+        switch reachability.currentReachabilityStatus {
+        case .reachableViaWiFi:
+            print("Reachable via WiFi")
+        case .reachableViaWWAN:
+            print("Reachable via Cellular")
+        case .notReachable:
+            print("Network not reachable")
+            showAlert(Alerts.NoInternetTitle, message: Alerts.NoInternetMessage)
+        }
     }
 }

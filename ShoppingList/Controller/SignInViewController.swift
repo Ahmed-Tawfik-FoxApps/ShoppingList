@@ -13,9 +13,11 @@ import GoogleSignIn
 class SignInViewController: UIViewController, GIDSignInUIDelegate {
 
     // MARK: Properties
-    fileprivate var authHandle: AuthStateDidChangeListenerHandle?
     
+    fileprivate var authHandle: AuthStateDidChangeListenerHandle?
+
     // MARK: IBOutlet
+    
     @IBOutlet weak var signInButton: GIDSignInButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     

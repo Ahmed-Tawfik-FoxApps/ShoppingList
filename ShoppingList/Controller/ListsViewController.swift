@@ -8,10 +8,13 @@
 
 import UIKit
 import Firebase
+import ReachabilitySwift
 
 class ListsViewController: UIViewController {
 
     // MARK: Properties
+    
+    fileprivate var reachability = Reachability()!
     
     // MARK: IBOutlet
     
@@ -30,11 +33,13 @@ class ListsViewController: UIViewController {
         super.viewWillAppear(animated)
         subscribeToNotifications()
         loadData()
+        startObservingReachability(reachability)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         unSubscribeToNotifications()
+        stopObservingReachability(reachability)
     }
 
     // MARK: IBAction

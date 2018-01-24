@@ -58,7 +58,7 @@ PODS:
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
-  - Reachability (3.2)
+  - ReachabilitySwift (3)
   - SDWebImage (4.2.3):
     - SDWebImage/Core (= 4.2.3)
   - SDWebImage/Core (4.2.3)
@@ -69,7 +69,7 @@ DEPENDENCIES:
   - FirebaseCore
   - FirebaseUI/Auth
   - FirebaseUI/Google
-  - Reachability (~> 3.2)
+  - ReachabilitySwift (~> 3)
   - SDWebImage (~> 4.0)
 
 SPEC CHECKSUMS:
@@ -86,9 +86,9 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: ebaa1f79a5366922c1735f1566901f50beba23b7
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
-  Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
+  ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
   SDWebImage: 791bb72962b3492327ddcac4b1880bd1b5458431
 
-PODFILE CHECKSUM: d24803840d0f36f4aeb44837ee5ac6f878bc4dec
+PODFILE CHECKSUM: a7ce76cfca586c04e0666ac669f03a0a3b6f924e
 
 COCOAPODS: 1.1.1

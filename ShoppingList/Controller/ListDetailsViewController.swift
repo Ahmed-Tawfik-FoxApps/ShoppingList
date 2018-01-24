@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ReachabilitySwift
 
 class ListDetailsViewController: UIViewController {
 
@@ -14,8 +15,10 @@ class ListDetailsViewController: UIViewController {
     
     var currentList: ShoppingList!
     var currentListItemsInSections: [ItemsPurchaseStatus]!
-    
+    fileprivate var reachability = Reachability()!
+
     // MARK: IBOutlet
+    
     @IBOutlet weak var listDetailsNavItem: UINavigationItem!
     @IBOutlet weak var collectionViewFlowLayout: UICollectionViewFlowLayout!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -36,11 +39,13 @@ class ListDetailsViewController: UIViewController {
         super.viewWillAppear(animated)
         configureListCompletionPercentage()
         subscribeToNotifications()
+        startObservingReachability(reachability)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         unSubscribeToNotifications()
+        stopObservingReachability(reachability)
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {

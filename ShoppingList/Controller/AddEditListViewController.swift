@@ -8,11 +8,13 @@
 
 import UIKit
 import SDWebImage
+import ReachabilitySwift
 
 class AddEditListViewController: UIViewController {
 
     // MARK: Properties
     
+    fileprivate var reachability = Reachability()!
     var currentList: ShoppingList!
     var currentListItems: [ShoppingItem]!
     var isNewList = true
@@ -44,11 +46,13 @@ class AddEditListViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         subscribeToNotifications()
+        startObservingReachability(reachability)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillAppear(animated)
         unSubscribeToNotifications()
+        stopObservingReachability(reachability)
     }
     
     // MARK: IBAction

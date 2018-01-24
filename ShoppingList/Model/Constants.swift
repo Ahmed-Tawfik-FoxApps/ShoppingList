@@ -73,6 +73,8 @@ struct Alerts {
     static let OverwriteAlert = "Overwrite"
     static let EmptyListNameTitle = "List Name is not Set"
     static let EmptyListNameMessage = "List Name can't be Blank, please set the List Name"
+    static let NoInternetTitle = "Check Internet Connection"
+    static let NoInternetMessage = "Stay connected to get the full online features of the App"
 }
 
 // MARK: Notification Names

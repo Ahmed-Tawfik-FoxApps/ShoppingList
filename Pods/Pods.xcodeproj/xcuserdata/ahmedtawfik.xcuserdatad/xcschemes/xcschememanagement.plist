@@ -49,6 +49,11 @@
 		<key>Reachability.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
+			<integer>9</integer>
+		</dict>
+		<key>ReachabilitySwift.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
 			<integer>8</integer>
 		</dict>
 		<key>SDWebImage.xcscheme</key>

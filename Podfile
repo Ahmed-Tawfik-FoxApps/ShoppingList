@@ -12,5 +12,5 @@ pod 'Firebase/Auth'
 pod 'FirebaseUI/Auth'
 pod 'FirebaseUI/Google'
 pod 'SDWebImage', '~> 4.0'
-pod 'Reachability', '~> 3.2'
+pod 'ReachabilitySwift', '~> 3'
 end
