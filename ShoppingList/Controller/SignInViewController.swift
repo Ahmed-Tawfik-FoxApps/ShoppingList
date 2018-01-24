@@ -104,11 +104,11 @@ extension SignInViewController {
         Model.sharedInstance().currentUser.userID = activeUser.uid
         Model.sharedInstance().currentUser.displayName = activeUser.displayName!
         Model.sharedInstance().currentUser.email = activeUser.email!
-        // To be Added -- demo item need to be added to the demo list
+        let demoItems = Model.sharedInstance().predefinedItems.count >= 2 ? [Model.sharedInstance().predefinedItems[0], Model.sharedInstance().predefinedItems[1]] : [ShoppingItem]()
         let demoList = [FirebaseClient.NodeKeys.ListName: Constants.DemoListName as AnyObject,
                         FirebaseClient.NodeKeys.DueDate: getStringFromDate(Date().addingTimeInterval(Constants.SecondsForDay)) as AnyObject,
                         FirebaseClient.NodeKeys.ListKey: "" as AnyObject,
-                        FirebaseClient.NodeKeys.Items: [[String: AnyObject]]() as AnyObject]
+                        FirebaseClient.NodeKeys.Items: getDictionaryFromItems(demoItems) as AnyObject]
         Model.sharedInstance().currentUser.lists = [ShoppingList(dictionary: demoList)]
     }
 }

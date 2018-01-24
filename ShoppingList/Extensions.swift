@@ -29,4 +29,18 @@ extension UIViewController {
         
         return dateFormater.date(from: string)!
     }
+    
+    func getDictionaryFromItems(_ Items: [ShoppingItem]) -> [[String: AnyObject]] {
+        var itemsDictionary = [[String: AnyObject]]()
+        if Items.count != 0 {
+            for i in 0 ... Items.count - 1 {
+                let itemDictionary = [FirebaseClient.NodeKeys.ItemName: Items[i].itemName as AnyObject,
+                                      FirebaseClient.NodeKeys.ItemCategory: Items[i].itemCategory as AnyObject,
+                                      FirebaseClient.NodeKeys.ItemThumbnailURL: Items[i].itemThumbnailURL as AnyObject,
+                                      FirebaseClient.NodeKeys.ItemIsDone: Items[i].itemIsDone as AnyObject]
+                itemsDictionary.append(itemDictionary)
+            }
+        }
+        return itemsDictionary
+    }
 }

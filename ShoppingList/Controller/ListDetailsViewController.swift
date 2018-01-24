@@ -27,9 +27,13 @@ class ListDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        configureListCompletionPercentage()
         // Configure Collection View Flow Layout
         configureFlowLayoutForWidth(view.frame.size.width - collectionViewFlowlayoutParameters.CollectionViewMargin)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        configureListCompletionPercentage()
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -43,8 +47,17 @@ class ListDetailsViewController: UIViewController {
     }
     
     private func configureListCompletionPercentage() {
-//        completionPercentageLable.text = "Done: \(currentListItemsInSections[1].items.count)" + "/" + String(currentList.items.count)
-//        checkmarkImageView.isHidden = true
+        if currentListItemsInSections[1].items.count == currentList.items.count {
+            completionPercentageLable.text = "All items has been purchased"
+            UIView.animate(withDuration: 0.5, animations: {
+                self.checkmarkImageView.alpha = 1
+            })
+        } else {
+            completionPercentageLable.text = "Done: \(currentListItemsInSections[1].items.count) / \(currentListItemsInSections[1].items.count)"
+            UIView.animate(withDuration: 0.5, animations: {
+                self.checkmarkImageView.alpha = 0
+            })
+        }
     }
     
     private func configureFlowLayoutForWidth (_ width: CGFloat) {
@@ -98,6 +111,7 @@ extension ListDetailsViewController: UICollectionViewDelegate, UICollectionViewD
             currentList.items[index].itemIsDone = !currentList.items[index].itemIsDone
             FirebaseClient.sharedInstance().updateItems(for: currentList.listKey, items: currentList.items.sorted(by: {$0.itemName < $1.itemName}))
             currentListItemsInSections = currentList.getItemsPurchaseStatusInSections()
+            configureListCompletionPercentage()
             collectionView.reloadData()
         }
     }

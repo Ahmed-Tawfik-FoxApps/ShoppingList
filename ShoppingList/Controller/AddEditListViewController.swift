@@ -31,9 +31,9 @@ class AddEditListViewController: UIViewController {
         super.viewDidLoad()
         FirebaseClient.sharedInstance().observePredefinedItems()
         configureListForEdit()
+        addTapGesture()
         // Configure Collection View Flow Layout
         configureFlowLayoutForWidth(view.frame.size.width - collectionViewFlowlayoutParameters.CollectionViewMargin)
-
         collectionView.allowsMultipleSelection = true
     }
     
@@ -75,9 +75,23 @@ class AddEditListViewController: UIViewController {
         collectionView.reloadData()
     }
 
+    // MARK: Configure UI
+    
+    private func addTapGesture() {
+        //Dismiss the keyboard in case the user click anywhere else in the screen
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tap)
+        tap.cancelsTouchesInView = false
+    }
+    
+    @objc private func dismissKeyboard() {
+        view.endEditing(true)
+    }
+
     // MARK: Helper Functions
     
     func configureListForEdit() {
+        listName.becomeFirstResponder()
         switch isNewList {
         case true:
             listDetailsNavItem.title = ListDetailsNavTitles.AddList
@@ -156,6 +170,14 @@ extension AddEditListViewController {
         NotificationCenter.default.removeObserver(self,
                                                   name: NSNotification.Name(NotificationNames.PredefinedItemsUpdated),
                                                   object: nil)
+    }
+}
+
+extension AddEditListViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        dismissKeyboard()
+        return true
     }
 }
 
