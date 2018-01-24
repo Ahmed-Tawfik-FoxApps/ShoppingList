@@ -45,15 +45,19 @@ class ListDetailsViewController: UIViewController {
     private func configureUI() {
         listDetailsNavItem.title = currentList.listName
     }
-    
+
     private func configureListCompletionPercentage() {
-        if currentListItemsInSections[1].items.count == currentList.items.count {
-            completionPercentageLable.text = "All items has been purchased"
+        if currentList.items.count == 0 {
+            completionPercentageLable.text = ItemsPurchaseStatusText.NoItemsInList
+            completionPercentageLable.textColor = .red
+            checkmarkImageView.alpha = 0
+        } else if currentListItemsInSections[1].items.count == currentList.items.count {
+            completionPercentageLable.text = ItemsPurchaseStatusText.AllItemsPurchased
             UIView.animate(withDuration: 0.5, animations: {
                 self.checkmarkImageView.alpha = 1
             })
         } else {
-            completionPercentageLable.text = "Done: \(currentListItemsInSections[1].items.count) / \(currentListItemsInSections[1].items.count)"
+            completionPercentageLable.text = "Done: \(currentListItemsInSections[1].items.count) / \(currentList.items.count)"
             UIView.animate(withDuration: 0.5, animations: {
                 self.checkmarkImageView.alpha = 0
             })

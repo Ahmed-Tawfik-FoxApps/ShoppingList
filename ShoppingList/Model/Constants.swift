@@ -114,3 +114,8 @@ struct collectionViewFlowlayoutParameters {
     static let Space : CGFloat = 4.0
     static let ItemsPerLine = 3
 }
+
+struct ItemsPurchaseStatusText {
+    static let AllItemsPurchased = "All items has been purchased"
+    static let NoItemsInList = "No items in this List"
+}

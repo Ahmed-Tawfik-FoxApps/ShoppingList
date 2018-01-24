@@ -368,22 +368,23 @@
                                     <constraint firstAttribute="width" constant="50" id="iji-2e-AAc"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Done: X / X" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ua9-Pu-ema">
-                                <rect key="frame" x="132" y="81.5" width="110.5" height="26.5"/>
-                                <fontDescription key="fontDescription" type="italicSystem" pointSize="22"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Done: X / X" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="Ua9-Pu-ema">
+                                <rect key="frame" x="137.5" y="82.5" width="101" height="24"/>
+                                <fontDescription key="fontDescription" type="italicSystem" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Ua9-Pu-ema" firstAttribute="centerX" secondItem="law-15-dv1" secondAttribute="centerX" id="5Pq-Za-AcU"/>
                             <constraint firstItem="Ua9-Pu-ema" firstAttribute="centerY" secondItem="gKs-ky-GMY" secondAttribute="centerY" id="Ajw-XZ-8w9"/>
+                            <constraint firstItem="Ua9-Pu-ema" firstAttribute="centerX" secondItem="law-15-dv1" secondAttribute="centerX" id="GWW-oL-daY"/>
                             <constraint firstItem="tpT-bQ-FI3" firstAttribute="trailing" secondItem="law-15-dv1" secondAttribute="trailing" id="Hdo-xj-qHM"/>
                             <constraint firstItem="tpT-bQ-FI3" firstAttribute="leading" secondItem="law-15-dv1" secondAttribute="leading" id="Ppj-Ip-rTn"/>
                             <constraint firstItem="tpT-bQ-FI3" firstAttribute="bottom" secondItem="law-15-dv1" secondAttribute="bottom" id="cSN-dn-6md"/>
                             <constraint firstItem="gKs-ky-GMY" firstAttribute="trailing" secondItem="law-15-dv1" secondAttribute="trailing" id="iiz-vc-utE"/>
                             <constraint firstItem="gKs-ky-GMY" firstAttribute="top" secondItem="law-15-dv1" secondAttribute="top" constant="5" id="nwC-ay-kZo"/>
+                            <constraint firstItem="gKs-ky-GMY" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Ua9-Pu-ema" secondAttribute="trailing" constant="8" id="sco-r3-zWz"/>
                             <constraint firstItem="tpT-bQ-FI3" firstAttribute="top" secondItem="gKs-ky-GMY" secondAttribute="bottom" constant="5" id="x3b-WI-tXB"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="law-15-dv1"/>
