@@ -95,6 +95,11 @@ class ListsViewController: UIViewController {
                     AddEditListViewController.isNewList = true
                 }
             }
+        } else if segue.identifier == SegueIdentiers.ListDetails {
+            if let listDetailsViewController = segue.destination as? ListDetailsViewController {
+                listDetailsViewController.currentList = Model.sharedInstance().currentList
+                listDetailsViewController.currentListItemsInSections = Model.sharedInstance().currentList.getItemsPurchaseStatusInSections()
+            }
         }
     }
 }
@@ -108,7 +113,7 @@ extension ListsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "listCell")
+        let cell = tableView.dequeueReusableCell(withIdentifier: ResuableIDs.ListCell)
         sortLists()
         cell?.textLabel?.text = Model.sharedInstance().currentUser.lists[indexPath.row].listName
         cell?.detailTextLabel?.text = "Due Date: \(Model.sharedInstance().currentUser.lists[indexPath.row].dueDate)"
@@ -122,13 +127,18 @@ extension ListsViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        Model.sharedInstance().currentList = Model.sharedInstance().currentUser.lists[indexPath.row]
+        performSegue(withIdentifier: SegueIdentiers.ListDetails, sender: nil)
+    }
+    
     private func sortLists() {
         let sortListsByListName = UserDefaults.standard.bool(forKey: Constants.SortListsByListName)
         Model.sharedInstance().currentUser.sortListsByListName()
         if !sortListsByListName {
             Model.sharedInstance().currentUser.sortListsByDueDate()
         }
-        listsSortButton.title = sortListsByListName ? "123" : "ABC"
+        listsSortButton.title = sortListsByListName ? ListSortTypes.ByDate : ListSortTypes.ByName
     }
 }
 

@@ -82,6 +82,22 @@ struct ShoppingList {
     mutating func sortItemsByName() {
         items = items.sorted(by: { $0.itemName.localizedCompare($1.itemName) == .orderedAscending })
     }
+    
+    func getItemsPurchaseStatusInSections() -> [ItemsPurchaseStatus] {
+        var toDoItems = [ShoppingItem]()
+        var doneItems = [ShoppingItem]()
+        for item in items {
+            if !item.itemIsDone {
+                toDoItems.append(item)
+            } else if item.itemIsDone {
+                doneItems.append(item)
+            }
+        }
+        let toDoSetion = ItemsPurchaseStatus(purchaseStatus: ItemsSectionNames.ToDo, items: toDoItems)
+        let doneSetion = ItemsPurchaseStatus(purchaseStatus: ItemsSectionNames.Done, items: doneItems)
+        
+        return [toDoSetion, doneSetion]
+    }        
 }
 
 // MARK: - Shopping Item Model
@@ -90,16 +106,27 @@ struct ShoppingItem {
     var itemName = ""
     var itemCategory = ""
     var itemThumbnailURL = ""
+    var itemIsDone = false
     
     init() {
         itemName = ""
         itemCategory = ""
         itemThumbnailURL = ""
+        itemIsDone = false
     }
     
     init(dictionary: [String: AnyObject]) {
         itemName = dictionary[FirebaseClient.NodeKeys.ItemName]! as! String
         itemCategory = dictionary[FirebaseClient.NodeKeys.ItemCategory]! as! String
         itemThumbnailURL = dictionary[FirebaseClient.NodeKeys.ItemThumbnailURL]! as! String
+        itemIsDone = dictionary[FirebaseClient.NodeKeys.ItemIsDone]! as? Bool ?? false
     }
 }
+
+// MARK: - Shopping Item Model
+
+struct ItemsPurchaseStatus {
+    var purchaseStatus: String
+    var items: [ShoppingItem]
+}
+

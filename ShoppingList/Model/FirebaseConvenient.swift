@@ -174,6 +174,11 @@ extension FirebaseClient {
         }
     }
     
+    func updateItems(for listKey: String, items: [ShoppingItem]) {
+        let itemsDictionary = getDictionaryFromItems(items)
+        writeData(at: substituteKeyInNodePath(NodePath.ListItems, key: NodePathKeys.ListKey, value: listKey)!, value: itemsDictionary as AnyObject)
+    }
+    
     // MARK: Helper Functions
     
     private func substituteKeyInNodePath(_ nodePath: String, key: String, value: String) -> String? {
@@ -196,7 +201,8 @@ extension FirebaseClient {
             for i in 0 ... Items.count - 1 {
                 let itemDictionary = [NodeKeys.ItemName: Items[i].itemName as AnyObject,
                                       NodeKeys.ItemCategory: Items[i].itemCategory as AnyObject,
-                                      NodeKeys.ItemThumbnailURL: Items[i].itemThumbnailURL as AnyObject]
+                                      NodeKeys.ItemThumbnailURL: Items[i].itemThumbnailURL as AnyObject,
+                                      NodeKeys.ItemIsDone: Items[i].itemIsDone as AnyObject]
                 itemsDictionary.append(itemDictionary)
             }
         }

@@ -105,7 +105,7 @@ extension SignInViewController {
         Model.sharedInstance().currentUser.displayName = activeUser.displayName!
         Model.sharedInstance().currentUser.email = activeUser.email!
         // To be Added -- demo item need to be added to the demo list
-        let demoList = [FirebaseClient.NodeKeys.ListName: "Demo List" as AnyObject,
+        let demoList = [FirebaseClient.NodeKeys.ListName: Constants.DemoListName as AnyObject,
                         FirebaseClient.NodeKeys.DueDate: getStringFromDate(Date().addingTimeInterval(Constants.SecondsForDay)) as AnyObject,
                         FirebaseClient.NodeKeys.ListKey: "" as AnyObject,
                         FirebaseClient.NodeKeys.Items: [[String: AnyObject]]() as AnyObject]

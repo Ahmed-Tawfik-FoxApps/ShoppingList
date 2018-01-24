@@ -32,13 +32,13 @@ class AddEditListViewController: UIViewController {
         FirebaseClient.sharedInstance().observePredefinedItems()
         configureListForEdit()
         // Configure Collection View Flow Layout
-        configureFlowLayoutForWidth(view.frame.size.width - 2)
+        configureFlowLayoutForWidth(view.frame.size.width - collectionViewFlowlayoutParameters.CollectionViewMargin)
 
         collectionView.allowsMultipleSelection = true
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        configureFlowLayoutForWidth(size.width - 2)
+        configureFlowLayoutForWidth(size.width - collectionViewFlowlayoutParameters.CollectionViewMargin)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -80,11 +80,11 @@ class AddEditListViewController: UIViewController {
     func configureListForEdit() {
         switch isNewList {
         case true:
-            listDetailsNavItem.title = "Add List"
+            listDetailsNavItem.title = ListDetailsNavTitles.AddList
             listName.text = ""
             dueDatePicker.date = Date().addingTimeInterval(Constants.SecondsForDay)
         case false:
-            listDetailsNavItem.title = "Edit List"
+            listDetailsNavItem.title = ListDetailsNavTitles.EditList
             listName.text = currentList.listName
             dueDatePicker.date = getDateFromString(currentList.dueDate)
         }
@@ -92,13 +92,10 @@ class AddEditListViewController: UIViewController {
     
     private func configureFlowLayoutForWidth (_ width: CGFloat) {
         if collectionViewFlowLayout != nil {
-            let space : CGFloat = 4.0
-            let itemsPerLine = 3
-            let dimensionFactor = width
-            let dimension = (dimensionFactor - (CGFloat(itemsPerLine - 1) * space)) / CGFloat(itemsPerLine)
-            
-            collectionViewFlowLayout.minimumInteritemSpacing = space
-            collectionViewFlowLayout.minimumLineSpacing = space
+            let dimension = (width - (CGFloat(collectionViewFlowlayoutParameters.ItemsPerLine - 1) * collectionViewFlowlayoutParameters.Space)) / CGFloat(collectionViewFlowlayoutParameters.ItemsPerLine)
+
+            collectionViewFlowLayout.minimumInteritemSpacing = collectionViewFlowlayoutParameters.Space
+            collectionViewFlowLayout.minimumLineSpacing = collectionViewFlowlayoutParameters.Space
             collectionViewFlowLayout.itemSize = CGSize(width: dimension, height: dimension)
         }
     }
@@ -112,8 +109,7 @@ extension AddEditListViewController: UICollectionViewDelegate, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let reusedId = "itemCell"
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reusedId, for: indexPath) as! ItemCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ResuableIDs.ItemCell, for: indexPath) as! ItemCell
         let itemImageURL = URL(string: Model.sharedInstance().predefinedItems[indexPath.row].itemThumbnailURL)
         
         cell.itemImageView.sd_setImage(with: itemImageURL, placeholderImage: #imageLiteral(resourceName: "placeHolder"))

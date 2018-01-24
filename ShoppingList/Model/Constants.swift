@@ -6,7 +6,7 @@
 //  Copyright © 2017 Fox Apps. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 extension FirebaseClient {
     struct NodeKeys {
@@ -26,6 +26,7 @@ extension FirebaseClient {
         static let ItemName = "itemName"
         static let ItemCategory = "itemCategory"
         static let ItemThumbnailURL = "itemThumbnailURL"
+        static let ItemIsDone = "itemIsDone"
 
     }
     
@@ -61,6 +62,7 @@ extension FirebaseClient {
 
 // MARK: Constants
 struct Constants {
+    static let DemoListName = "Demo List"
     static let SecondsForDay: Double = 86400
     static let SortListsByListName = "sortListsByListName"
 }
@@ -83,6 +85,32 @@ struct NotificationNames {
 struct SegueIdentiers {
     static let ListsView = "listsViewSegue"
     static let AddOrEditList = "AddEditListSegue"
+    static let ListDetails = "listDetailsSegue"
 }
 
+struct ItemsSectionNames {
+    static let ToDo = "ToDo"
+    static let Done = "Done"
+}
 
+struct ResuableIDs {
+    static let ListCell = "listCell"
+    static let ItemCell = "itemCell"
+    static let SectionHeader = "sectionHeader"
+}
+
+struct ListDetailsNavTitles {
+    static let AddList = "Add List"
+    static let EditList = "Edit List"
+}
+
+struct ListSortTypes {
+    static let ByName = "ABC"
+    static let ByDate = "123"
+}
+
+struct collectionViewFlowlayoutParameters {
+    static let CollectionViewMargin: CGFloat = 2
+    static let Space : CGFloat = 4.0
+    static let ItemsPerLine = 3
+}
