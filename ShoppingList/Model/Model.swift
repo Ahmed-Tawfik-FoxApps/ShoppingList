@@ -27,10 +27,6 @@ class Model: NSObject {
     }
 }
 
-// MARK: - Shopping Item Category
-
-//enum itemCategory: Int {case Grocery = 0, Other}
-
 // MARK: - Shopping List User Model
 
 struct SLUser {

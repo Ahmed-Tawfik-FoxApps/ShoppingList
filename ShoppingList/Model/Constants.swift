@@ -119,6 +119,6 @@ struct collectionViewFlowlayoutParameters {
 }
 
 struct ItemsPurchaseStatusText {
-    static let AllItemsPurchased = "All items has been purchased"
+    static let AllItemsPurchased = "All items have been purchased"
     static let NoItemsInList = "No items in this List"
 }

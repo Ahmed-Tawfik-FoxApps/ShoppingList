@@ -116,7 +116,6 @@
                     <navigationItem key="navigationItem" title="Shopping Lists" id="ePF-QH-ZOv">
                         <barButtonItem key="leftBarButtonItem" title="Sign Out" id="aLL-Uy-Egx">
                             <connections>
-                                <action selector="signOut:" destination="xZo-Ps-BNH" id="Io6-w7-weI"/>
                                 <segue destination="rY4-sZ-v7E" kind="unwind" unwindAction="signOutWithSegue:" id="Tgr-Qu-gsH"/>
                             </connections>
                         </barButtonItem>

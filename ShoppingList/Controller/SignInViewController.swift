@@ -21,7 +21,7 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
     @IBOutlet weak var signInButton: GIDSignInButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    // MARK: App Life Cycle
+    // MARK: ViewController Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,10 +39,7 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
     }
     
     // MARK: IBAction
-    
-    @IBAction func signIn(_ sender: Any) {
-    }
-    
+        
     @IBAction func signOut(segue: UIStoryboardSegue) {
         GIDSignIn.sharedInstance().signOut()
         let firebaseAuth = Auth.auth()
@@ -79,7 +76,9 @@ extension SignInViewController {
                     
                     if let currentUser = currentUser {
                         Model.sharedInstance().currentUser = currentUser
+                        DispatchQueue.main.async {
                         self.performSegue(withIdentifier: SegueIdentiers.ListsView, sender: nil)
+                        }
                     } else {
                         self.setNewCurrentUser(activeUser)
                         FirebaseClient.sharedInstance().addNewUser(for: Model.sharedInstance().currentUser)
@@ -89,7 +88,9 @@ extension SignInViewController {
                     }
                 })
             } else {
-                self.signInButton.isEnabled = true
+                DispatchQueue.main.async {
+                    self.signInButton.isEnabled = true
+                }
             }
         })
     }

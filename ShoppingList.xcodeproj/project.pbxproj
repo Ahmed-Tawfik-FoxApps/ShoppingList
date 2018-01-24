@@ -84,13 +84,13 @@
 			isa = PBXGroup;
 			children = (
 				58F0AE411FEEDABC0025305F /* AppDelegate.swift */,
+				580D620A2010E86700B48343 /* Extensions.swift */,
 				58F0AE561FEEDB000025305F /* Model */,
 				58F0AE551FEEDAF20025305F /* View */,
 				58F0AE541FEEDAEB0025305F /* Controller */,
 				58F0AE531FEEDAE20025305F /* Assets */,
-				58F0AE571FEEDB0D0025305F /* Supportin Files */,
+				58F0AE571FEEDB0D0025305F /* Supporting Files */,
 				58F0AE4D1FEEDABC0025305F /* Info.plist */,
-				580D620A2010E86700B48343 /* Extensions.swift */,
 			);
 			path = ShoppingList;
 			sourceTree = "<group>";
@@ -136,12 +136,12 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		58F0AE571FEEDB0D0025305F /* Supportin Files */ = {
+		58F0AE571FEEDB0D0025305F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
 				58F0AE581FEEDE1A0025305F /* GoogleService-Info.plist */,
 			);
-			path = "Supportin Files";
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		6519A45CB8F65F04DF3054FC /* Frameworks */ = {

@@ -21,7 +21,7 @@ class ListsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var listsSortButton: UIBarButtonItem!
     
-    // MARK: App Life Cycle
+    // MARK: ViewController Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,15 +43,7 @@ class ListsViewController: UIViewController {
     }
 
     // MARK: IBAction
-    
-    @IBAction func signOut(_ sender: Any) {
-        do {
-            try Auth.auth().signOut()
-        } catch {
-            print("unable to sign out: \(error)")
-        }
-    }
-    
+        
     @IBAction func addNewList(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: SegueIdentiers.AddOrEditList, sender: sender)
     }

@@ -25,7 +25,7 @@ class ListDetailsViewController: UIViewController {
     @IBOutlet weak var completionPercentageLable: UILabel!
     @IBOutlet weak var checkmarkImageView: UIImageView!
     
-    // MARK: App Life Cycle
+    // MARK: ViewController Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()

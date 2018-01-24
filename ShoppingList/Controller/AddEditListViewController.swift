@@ -27,7 +27,7 @@ class AddEditListViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var collectionViewFlowLayout: UICollectionViewFlowLayout!
     
-    // MARK: App Life Cycle
+    // MARK: ViewController Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
