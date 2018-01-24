@@ -104,6 +104,9 @@ extension ListDetailsViewController: UICollectionViewDelegate, UICollectionViewD
         
         let itemCategory = currentListItemsInSections[indexPath.section]
         let itemImageURL = URL(string: itemCategory.items[indexPath.item].itemThumbnailURL)
+        
+        cell.itemImageView.sd_setShowActivityIndicatorView(true)
+        cell.itemImageView.sd_setIndicatorStyle(.whiteLarge)
         cell.itemImageView.sd_setImage(with: itemImageURL, placeholderImage: #imageLiteral(resourceName: "placeHolder"))
 
         return cell

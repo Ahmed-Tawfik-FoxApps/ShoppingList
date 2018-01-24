@@ -126,6 +126,8 @@ extension AddEditListViewController: UICollectionViewDelegate, UICollectionViewD
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ResuableIDs.ItemCell, for: indexPath) as! ItemCell
         let itemImageURL = URL(string: Model.sharedInstance().predefinedItems[indexPath.row].itemThumbnailURL)
         
+        cell.itemImageView.sd_setShowActivityIndicatorView(true)
+        cell.itemImageView.sd_setIndicatorStyle(.whiteLarge)
         cell.itemImageView.sd_setImage(with: itemImageURL, placeholderImage: #imageLiteral(resourceName: "placeHolder"))
         
         if currentListItems.contains(where: {$0.itemName == Model.sharedInstance().predefinedItems[indexPath.row].itemName}) {
