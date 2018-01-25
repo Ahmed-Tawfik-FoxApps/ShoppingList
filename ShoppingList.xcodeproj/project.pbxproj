@@ -11,7 +11,7 @@
 		580D62092010E69300B48343 /* AddEditListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580D62082010E69300B48343 /* AddEditListViewController.swift */; };
 		580D620B2010E86700B48343 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580D620A2010E86700B48343 /* Extensions.swift */; };
 		582942FD20181C0A005738AD /* ItemsSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582942FC20181C0A005738AD /* ItemsSectionHeader.swift */; };
-		582942FF201964BF005738AD /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 582942FE201964BF005738AD /* README.md */; };
+		58294301201A26AA005738AD /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 58294300201A26AA005738AD /* README.md */; };
 		5840771D1FF1F89C0022F492 /* ListsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5840771C1FF1F89C0022F492 /* ListsViewController.swift */; };
 		5840771F1FF2BA320022F492 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5840771E1FF2BA320022F492 /* Model.swift */; };
 		584077211FF2FABA0022F492 /* FirebaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584077201FF2FABA0022F492 /* FirebaseClient.swift */; };
@@ -33,7 +33,7 @@
 		580D62082010E69300B48343 /* AddEditListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditListViewController.swift; sourceTree = "<group>"; };
 		580D620A2010E86700B48343 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		582942FC20181C0A005738AD /* ItemsSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsSectionHeader.swift; sourceTree = "<group>"; };
-		582942FE201964BF005738AD /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ShoppingList/README.md; sourceTree = SOURCE_ROOT; };
+		58294300201A26AA005738AD /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		5840771C1FF1F89C0022F492 /* ListsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsViewController.swift; sourceTree = "<group>"; };
 		5840771E1FF2BA320022F492 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		584077201FF2FABA0022F492 /* FirebaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseClient.swift; sourceTree = "<group>"; };
@@ -85,9 +85,9 @@
 		58F0AE401FEEDABC0025305F /* ShoppingList */ = {
 			isa = PBXGroup;
 			children = (
+				58294300201A26AA005738AD /* README.md */,
 				58F0AE411FEEDABC0025305F /* AppDelegate.swift */,
 				580D620A2010E86700B48343 /* Extensions.swift */,
-				582942FE201964BF005738AD /* README.md */,
 				58F0AE561FEEDB000025305F /* Model */,
 				58F0AE551FEEDAF20025305F /* View */,
 				58F0AE541FEEDAEB0025305F /* Controller */,
@@ -226,9 +226,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				582942FF201964BF005738AD /* README.md in Resources */,
 				58F0AE4C1FEEDABC0025305F /* LaunchScreen.storyboard in Resources */,
 				58F0AE591FEEDE1A0025305F /* GoogleService-Info.plist in Resources */,
+				58294301201A26AA005738AD /* README.md in Resources */,
 				58F0AE491FEEDABC0025305F /* Assets.xcassets in Resources */,
 				58F0AE471FEEDABC0025305F /* Main.storyboard in Resources */,
 			);

@@ -44,7 +44,7 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
     }
     
     // MARK: IBAction
-        
+
     @IBAction func signOut(segue: UIStoryboardSegue) {
         GIDSignIn.sharedInstance().signOut()
         let firebaseAuth = Auth.auth()
@@ -74,6 +74,7 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
             DispatchQueue.main.async {
                 UIView.animate(withDuration: 0.5, animations: {
                     self.reachabilityTextLabel.alpha = 1
+                    self.signInButton.isEnabled = false
                 })
             }
         }
@@ -81,19 +82,19 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
             DispatchQueue.main.async {
                 UIView.animate(withDuration: 0.2, animations: {
                     self.reachabilityTextLabel.alpha = 0
+                    self.signInButton.isEnabled = true
                 })
             }
         }
     }
-    
 }
 
 // MARK: Extension SignInViewController - FIRAuth
 
 extension SignInViewController {
     func configureFirebaseAuth() {
+        GIDSignIn.sharedInstance().delegate = self
         GIDSignIn.sharedInstance().uiDelegate = self
-//        GIDSignIn.sharedInstance().signIn()
         signInButton.style = .wide
         signInButton.colorScheme = .dark
     }
@@ -102,10 +103,6 @@ extension SignInViewController {
         authHandle = Auth.auth().addStateDidChangeListener({ (auth, user) in
             FirebaseClient.sharedInstance().getPredefinedItems()
             if let activeUser = user {
-                DispatchQueue.main.async {
-                    self.signInButton.isEnabled = false
-                    self.activityIndicator.startAnimating()
-                }
                 FirebaseClient.sharedInstance().getUserNode(for: activeUser.uid, completionHandler: { (currentUser) in
                     DispatchQueue.main.async {
                         self.activityIndicator.stopAnimating()
@@ -150,5 +147,23 @@ extension SignInViewController {
                         FirebaseClient.NodeKeys.ListKey: "" as AnyObject,
                         FirebaseClient.NodeKeys.Items: getDictionaryFromItems(demoItems) as AnyObject]
         Model.sharedInstance().currentUser.lists = [ShoppingList(dictionary: demoList)]
+    }
+}
+
+// MARK: Extension SignInViewController - GIDSignInDelegate
+
+extension SignInViewController: GIDSignInDelegate {
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        guard error == nil else {
+            print("Error while sign in: \(error!.localizedDescription)")
+            return
+        }
+        
+        guard let authentication = user.authentication else { return }
+        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
+                                                       accessToken: authentication.accessToken)
+        Auth.auth().signIn(with: credential)
+        activityIndicator.startAnimating()
+        self.signInButton.isEnabled = false
     }
 }

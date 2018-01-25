@@ -59,7 +59,6 @@ class ListsViewController: UIViewController {
     
     private func addLongPressGestureRecognizer () {
         let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(editList))
-        longPressGestureRecognizer.minimumPressDuration = 0.5
         tableView.addGestureRecognizer(longPressGestureRecognizer)
     }
     
