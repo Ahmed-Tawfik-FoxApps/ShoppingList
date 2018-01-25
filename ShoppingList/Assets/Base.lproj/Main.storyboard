@@ -39,12 +39,21 @@
                                 <rect key="frame" x="169" y="315" width="37" height="37"/>
                                 <color key="color" cocoaTouchSystemColor="darkTextColor"/>
                             </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Iternet Connection! Stay connected to get the full online features" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="QGA-Yr-MlM">
+                                <rect key="frame" x="0.0" y="613.5" width="375" height="33.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                <color key="textColor" red="1" green="0.22693889610000001" blue="0.16918646679999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="8n2-cy-8Oj" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="7UD-N2-FP4"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="QGA-Yr-MlM" secondAttribute="bottom" constant="20" id="APk-nK-GMX"/>
                             <constraint firstItem="8n2-cy-8Oj" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Hsh-s4-8Av"/>
+                            <constraint firstItem="QGA-Yr-MlM" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="c3C-kV-bKl"/>
                             <constraint firstItem="bBt-t9-qlc" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="m7R-0R-5cH"/>
+                            <constraint firstItem="QGA-Yr-MlM" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="vdn-Y6-fRy"/>
                             <constraint firstItem="bBt-t9-qlc" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="wjs-JL-iOv"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -52,6 +61,7 @@
                     <navigationItem key="navigationItem" id="b3n-b6-mgr"/>
                     <connections>
                         <outlet property="activityIndicator" destination="bBt-t9-qlc" id="Fd5-d1-gpH"/>
+                        <outlet property="reachabilityTextLabel" destination="QGA-Yr-MlM" id="Ndr-AA-PbA"/>
                         <outlet property="signInButton" destination="kdK-HF-cgC" id="4km-Ux-Ud9"/>
                         <segue destination="PKa-oc-A9q" kind="show" identifier="listsViewSegue" id="bno-bM-3vC"/>
                     </connections>
@@ -360,7 +370,7 @@
                                     <outlet property="delegate" destination="Sqv-ze-Q3a" id="TGF-vZ-j1g"/>
                                 </connections>
                             </collectionView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark" translatesAutoresizingMaskIntoConstraints="NO" id="gKs-ky-GMY">
+                            <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark" translatesAutoresizingMaskIntoConstraints="NO" id="gKs-ky-GMY">
                                 <rect key="frame" x="325" y="69" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Q7j-0s-kyY"/>

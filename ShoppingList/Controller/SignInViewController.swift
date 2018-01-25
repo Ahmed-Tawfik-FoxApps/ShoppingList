@@ -9,17 +9,20 @@
 import UIKit
 import Firebase
 import GoogleSignIn
+import ReachabilitySwift
 
 class SignInViewController: UIViewController, GIDSignInUIDelegate {
 
     // MARK: Properties
     
     fileprivate var authHandle: AuthStateDidChangeListenerHandle?
-
+    fileprivate var reachability = Reachability()!
+    
     // MARK: IBOutlet
     
     @IBOutlet weak var signInButton: GIDSignInButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var reachabilityTextLabel: UILabel!
     
     // MARK: ViewController Life Cycle
 
@@ -31,11 +34,13 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         addAuthHandle()
+        startReachabilityNotifier()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         removeAuthHandle()
+        stopReachabilityNotifier()
     }
     
     // MARK: IBAction
@@ -49,6 +54,38 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
             print ("Error signing out: %@", signOutError)
         }
     }
+    
+    // MARK: Helper Functions
+    private func startReachabilityNotifier() {
+        do {
+            try reachability.startNotifier()
+        } catch {
+            print("Unable to start notifier")
+        }
+        reachabilityWarning()
+    }
+    
+    private func stopReachabilityNotifier() {
+        reachability.stopNotifier()
+    }
+    
+    private func reachabilityWarning() {
+        reachability.whenUnreachable = {_ in
+            DispatchQueue.main.async {
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.reachabilityTextLabel.alpha = 1
+                })
+            }
+        }
+        reachability.whenReachable = {_ in
+            DispatchQueue.main.async {
+                UIView.animate(withDuration: 0.2, animations: {
+                    self.reachabilityTextLabel.alpha = 0
+                })
+            }
+        }
+    }
+    
 }
 
 // MARK: Extension SignInViewController - FIRAuth
